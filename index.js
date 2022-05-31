@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const connectDB = require('./db')
 connectDB();
 const {getAccessToken, saveUserData, getProfile} = require('./controllers/github')
-const {addCpHandles} = require('./controllers/codeforces')
+const {addCpHandles, getUserInfo, getBlogEntries, getContestsInfo} = require('./controllers/codeforces')
 
 app.get('/', function(req, res) {
   res.render('pages/index',{client_id: clientID});
@@ -29,3 +29,6 @@ app.get('/github/callback', getAccessToken);
 app.get('/save', saveUserData);
 app.get('/profile', getProfile);
 app.post('/cp', addCpHandles);
+app.get('/cfInfo', getUserInfo);
+app.get('/cfBlog', getBlogEntries);
+app.get('/cfContests', getContestsInfo);
