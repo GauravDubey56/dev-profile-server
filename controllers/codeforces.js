@@ -69,11 +69,12 @@ async function getUserInfo(req, res) {
         }
         const cfId = user.codeforces_handle;
         const data = await axios.get(`${cf_url}/user.info?handles=${cfId}`)
-        console.log(data);
+        // console.log(data);
         if (data.data.status == "OK") {
             const { rating, maxRating, rank, registrationTimeSeconds } = data.data.result[0];
             var myDate = new Date(registrationTimeSeconds * 1000);
             const joinDate = myDate.toLocaleDateString();
+            console.log(data.data.result[0])
             return res.status(200).json({
                 success: true,
                 data: {
